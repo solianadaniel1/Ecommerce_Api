@@ -36,7 +36,7 @@ Follow these steps to set up the development environment:
 ]
 
 4. **Run the development server**:
-   Run the development server to verify the setup
+   Run the development server to verif
    ```bash
     python manage.py runserver
 
