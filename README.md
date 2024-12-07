@@ -30,13 +30,12 @@ Follow these steps to set up the development environment:
 4. **Add the app to project**:
    Open bookstore_api/settings.py and add 'books' to the INSTALLED_APPS list.
    INSTALLED_APPS = [
-    # Other default apps...
     'rest_framework',  # Django REST Framework
     'books',  # Your app
 ]
 
 4. **Run the development server**:
-   Run the development server to verif
+   Run the development server to verify the setup
    ```bash
     python manage.py runserver
 
