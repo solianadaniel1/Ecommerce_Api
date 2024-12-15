@@ -40,3 +40,21 @@ Follow these steps to set up the development environment:
    ```bash
     python manage.py runserver
 
+## Features
+- List all books.
+- Create a new book.
+- Retrieve details of a specific book.
+- Update all fields of a book.
+- Partially update a book (e.g., update the price).
+- Delete a book.
+
+# Token Authentication Setup
+
+This API uses token-based authentication to secure the endpoints. To access the API, users must obtain a token.
+
+## Setup Steps
+
+1. **Install Dependencies**: Make sure `djangorestframework` and `djangorestframework-simplejwt` are installed.
+   ```bash
+   pip install djangorestframework
+   pip install djangorestframework-simplejwt
