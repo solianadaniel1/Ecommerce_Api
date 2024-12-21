@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'book',
+    'books',
     'rest_framework',
     'rest_framework.authtoken',
 ]
@@ -88,7 +88,11 @@ DATABASES = {
     }
 }
 
-
+# print("DB_NAME:", config("DB_NAME"))
+# print("DB_USER:", config("DB_USER"))
+# print("DB_PASSWORD:", config("DB_PASSWORD"))
+# print("DB_HOST:", config("DB_HOST"))
+# print("DB_PORT:", config("DB_PORT"))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
