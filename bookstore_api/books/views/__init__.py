@@ -1,1 +1,0 @@
-from .book_view import BookDetailView, BookListCreateView
