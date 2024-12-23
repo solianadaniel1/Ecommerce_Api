@@ -8,6 +8,6 @@ class CategorySerializer(serializers.ModelSerializer):
 
  # Field-level validation for 'price'
     def validate_name(self, value):
-        if value <= 0:
+        if len(value) <= 0:
             raise serializers.ValidationError("Category name must be at least 3 characters long")
         return value

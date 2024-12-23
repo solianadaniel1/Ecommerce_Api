@@ -8,6 +8,10 @@ class Category(models.Model):
     parent_category = models.ForeignKey(
         'self', related_name='subcategories', null=True, blank=True, on_delete=models.CASCADE
     )
+
+    def get_subcategories(self):
+        # This method returns all the subcategories under this category
+        return self.subcategories.all()
    
     def __str__(self):
         return self.name

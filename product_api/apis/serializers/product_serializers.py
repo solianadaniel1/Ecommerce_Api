@@ -19,7 +19,6 @@ class ProductSerializer(serializers.ModelSerializer):
         return value
     
     def validate_stock_quantity(self, value):
-        if value <= 0:
+        if not isinstance(value, int) or value <= 0:
             raise serializers.ValidationError("Stock Quantity must be a positive integer.")
-        
-  
+        return value
