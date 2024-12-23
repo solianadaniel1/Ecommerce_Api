@@ -1,6 +1,6 @@
-# E-commerce Bookstore API
+# E-commerce API
 
-This is the backend API for an E-commerce bookstore. It allows users to manage books, categories, and user authentication. The project is built using Django and Django REST Framework.
+This is the backend API for an E-commerce . It allows users to manage products, orders, categories, and user authentication. The project is built using Django and Django REST Framework.
 
 
 ## Setup Instructions
@@ -20,19 +20,19 @@ Follow these steps to set up the development environment:
 3. **Create a new Django project**:
    Create a django project
    ```bash
-   django-admin startproject bookstore_api
+   django-admin startproject product_api
 
 4. **Create a new Django app**:
-   Create a new Django app (for handling books and categories)
+   Create a new Django app (for handling product and categories)
    ```bash
-  python manage.py startapp books
+   python manage.py startapp product
 
 4. **Add the app to project**:
-   Open bookstore_api/settings.py and add 'books' to the INSTALLED_APPS list.
+   Open product_api/settings.py and add 'products' to the INSTALLED_APPS list.
    INSTALLED_APPS = [
     # Other default apps...
     'rest_framework',  # Django REST Framework
-    'books',  # Your app
+    'products',  # Your app
 ]
 
 4. **Run the development server**:
@@ -41,12 +41,12 @@ Follow these steps to set up the development environment:
     python manage.py runserver
 
 ## Features
-- List all books.
-- Create a new book.
-- Retrieve details of a specific book.
-- Update all fields of a book.
-- Partially update a book (e.g., update the price).
-- Delete a book.
+- List all products.
+- Create a new products.
+- Retrieve details of a specific products.
+- Update all fields of a products.
+- Partially update a products (e.g., update the price).
+- Delete a products.
 
 # Token Authentication Setup
 
