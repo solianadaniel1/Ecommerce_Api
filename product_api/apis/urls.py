@@ -7,6 +7,9 @@ from apis.views.user_views import UserViewSet
 from apis.views.category_view import CategoryViewSet
 from apis.views.product_view import ProductViewSet
 from apis.views.order_views import OrderViewSet
+from apis.views.review_view import ReviewViewSet
+from apis.views.wishlist_view import WishlistViewSet
+
 
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -19,6 +22,9 @@ router.register(r'products', ProductViewSet, basename='product')
 router.register(r'category', CategoryViewSet, basename='category')
 router.register(r'users', UserViewSet , basename='user')
 router.register(r'orders', OrderViewSet, basename='order')
+router.register(r'reviews', ReviewViewSet, basename='review')
+router.register(r'wishlist', WishlistViewSet, basename='wishlist')
+
 
 
 urlpatterns = [

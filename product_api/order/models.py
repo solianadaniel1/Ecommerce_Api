@@ -15,15 +15,17 @@ class Order(models.Model):
     # Order status (choices could be 'Pending', 'Shipped', 'Delivered', etc.)
     ORDER_STATUS_CHOICES = [
         ('Pending', 'Pending'),
+        ('Payment_Confirmed', 'Payment_Confirmed'),
         ('Shipped', 'Shipped'),
         ('Delivered', 'Delivered'),
         ('Canceled', 'Canceled'),
+        ('Refunded', 'Refunded'),
     ]
-    order_status = models.CharField(max_length=10, choices=ORDER_STATUS_CHOICES, default='Pending')
+    order_status = models.CharField(max_length=50, choices=ORDER_STATUS_CHOICES, default='Pending')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Order #{self.id} by {self.user} for {self.product.name}"
 
- 
+   

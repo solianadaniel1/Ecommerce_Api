@@ -7,14 +7,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django.db.models import Q
 from product.models import Category
-from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [IsAdminOrReadOnly]
-    parser_classes = [MultiPartParser, FormParser]  # Enable file uploads
+    parser_classes = [MultiPartParser, FormParser, JSONParser] #Enable file uploads and enable JSON parsing
 
     # Add filtering, searching, and ordering backends
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]

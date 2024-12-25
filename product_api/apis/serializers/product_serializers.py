@@ -6,11 +6,10 @@ from product.models.product_image import ProductImage
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
-        fields = ['id', 'image', 'caption'] 
+        fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
-    images = ProductImageSerializer(many=True)  # Use 'many=True' to handle multiple images
-
+    images = ProductImageSerializer(many=True, required=False)  # Use 'many=True' to handle multiple images
     class Meta:
         model = Product
         fields = '__all__'

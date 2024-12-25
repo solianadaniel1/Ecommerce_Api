@@ -11,3 +11,9 @@ class IsAdminOrReadOnly(BasePermission):
         print(f"User: {request.user}, Is Admin: {request.user.is_staff}, Is Authenticated: {request.user.is_authenticated}")
         # Restrict unsafe methods to authenticated admin users
         return request.user and request.user.is_authenticated and request.user.is_staff
+    
+
+class IsOrderOwner(BasePermission):
+    def has_object_permission(self, request, view, obj):
+        # Check if the logged-in user is the owner of the order
+        return obj.user == request.user
