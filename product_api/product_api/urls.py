@@ -14,15 +14,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import include, path
 
+
 def index(request):
-    return HttpResponse("Welcome to the API! Go to /api/product/ to view the product list.")
+    return HttpResponse(
+        "Welcome to the API! Go to /api/product/ to view the product list."
+    )
+
 
 urlpatterns = [
-    path('', index, name='index'),  # Handles the root U
-    path('admin/', admin.site.urls),
-    path('api/', include('apis.urls')),
+    path("", index, name="index"),  # Handles the root U
+    path("admin/", admin.site.urls),
+    path("api/", include("apis.urls")),
 ]

@@ -10,23 +10,61 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('product', '0001_initial'),
+        ("product", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.PositiveIntegerField(default=1)),
-                ('total_price', models.DecimalField(decimal_places=2, max_digits=10)),
-                ('shipping_address', models.TextField()),
-                ('order_status', models.CharField(choices=[('Pending', 'Pending'), ('Payment_Confirmed', 'Payment_Confirmed'), ('Shipped', 'Shipped'), ('Delivered', 'Delivered'), ('Canceled', 'Canceled'), ('Refunded', 'Refunded')], default='Pending', max_length=50)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('product', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='orders', to='product.product')),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='orders', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.PositiveIntegerField(default=1)),
+                ("total_price", models.DecimalField(decimal_places=2, max_digits=10)),
+                ("shipping_address", models.TextField()),
+                (
+                    "order_status",
+                    models.CharField(
+                        choices=[
+                            ("Pending", "Pending"),
+                            ("Payment_Confirmed", "Payment_Confirmed"),
+                            ("Shipped", "Shipped"),
+                            ("Delivered", "Delivered"),
+                            ("Canceled", "Canceled"),
+                            ("Refunded", "Refunded"),
+                        ],
+                        default="Pending",
+                        max_length=50,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "product",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="orders",
+                        to="product.product",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="orders",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
