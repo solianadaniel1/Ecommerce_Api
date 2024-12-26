@@ -2,12 +2,13 @@ from django.contrib import admin
 from .models.product import Product
 from .models.category import Category 
 from .models.review import Review 
+from .models.product_wishlist import Wishlist
 
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'stock_quantity','price', 'display_categories']  # Display categories in the list view
     search_fields = ['name', 'stock_quantity', 'price', 'stock_quantity']
-    list_filter = ['categories',]  # Allow filtering by categories in the sidebar
+    list_filter = ['categories']  # Allow filtering by categories in the sidebar
     readonly_fields = ['updated_date','created_date'] # Prevent manual editing
 
     def display_categories(self, obj):
@@ -21,6 +22,7 @@ admin.site.register(Product, ProductAdmin)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name','parent_category')  # Show category name in the list view
     search_fields = ('name','parent_category')  # Add search functionality for categories
+    list_filter = ['name']  # Allow filtering by categories in the sidebar
     readonly_fields = ('updated_at','created_at')  # Prevent manual editing
 
 admin.site.register(Category, CategoryAdmin)
@@ -29,6 +31,16 @@ admin.site.register(Category, CategoryAdmin)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('product','rating', 'comment')  # Show review products in the list view
     search_fields = ('product','rating', 'comment')  # Add search functionality for review
+    list_filter = ['rating','product__name']
     readonly_fields = ('updated_at','created_at')  # Prevent manual editing
 
 admin.site.register(Review, ReviewAdmin)
+
+
+class WishlistAdmin(admin.ModelAdmin):
+    list_display = ('user','product')  # Show wishlist products in the list view
+    search_fields = ('user','product')  # Add search functionality for wishlist
+    list_filter = ['product__name'] #to filter we should use the double underscore(__)
+    readonly_fields = ('updated_at','created_at')  # Prevent manual editing
+
+admin.site.register(Wishlist, WishlistAdmin)
