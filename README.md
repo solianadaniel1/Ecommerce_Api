@@ -30,7 +30,7 @@ Follow these steps to set up the development environment:
    pip install django-filter
 
 5. **Package for Mysql**: 
-  #### * Database Connector for MySQL
+   #### * Database Connector for MySQL
    In your project folder, run the following command used in Python database 
    connector to MySQL:
    ```bash
