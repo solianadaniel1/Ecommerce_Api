@@ -23,14 +23,15 @@ Follow these steps to set up the development environment:
    django-admin startproject product_api
 
 4. **Create a new Django app**:
-   Create a new Django app (for handling product and categories)
+   Create a new Django app 
    ```bash
    python manage.py startapp product
+   python manage.py startapp order
+   python manage.py startapp user
 
 4. **Add the app to project**:
    Open product_api/settings.py and add 'products' to the INSTALLED_APPS list.
    INSTALLED_APPS = [
-    # Other default apps...
     'rest_framework',  # Django REST Framework
     'products',  # Your app
 ]
