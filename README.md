@@ -18,13 +18,13 @@ Follow these steps to set up the development environment:
    pip install djangorestframework 
 
 3. **Package for Securing Data**:
-    #### * Secure Sensitive Data
+   #### * Secure Sensitive Data
    To keep sensitive data out of the source code, install `python-decouple`:
    ```bash
    pip install python-decouple
 
 4. **Package for filtering**: 
-    #### * Filtering of Querysets
+   #### * Filtering of Querysets
    In your project folder, run the following command to install to allows users to filter querysets:
    ```bash
    pip install django-filter
