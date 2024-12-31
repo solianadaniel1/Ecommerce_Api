@@ -36,23 +36,7 @@ Follow these steps to set up the development environment:
    ```bash
    pip install mysqlclient
 
-6. **Package for Image Processing**: 
-   #### * Processing Image Tasks such as Resizing and Conversion
-   In your project folder, run the following command used to process image tasks:
-   ```bash
-   pip install pillow
 
-7. **Package for PEP 8 style guide**: 
-   #### * Python code against the PEP 8 style guide
-   In your project folder, run the following command used to check Python code against the PEP 8 style guide :
-   ```bash
-   pip install pycodestyle
-
-8. **Package Identify Potential Bugs**: 
-   #### * Identify Potential Bugs in Python code
-   In your project folder, run the following command used to identifying potential bugs in Python code:
-   ```bash
-   pip install pyflakes
 
 9. **Create a new Django project**:
    Create a django project
