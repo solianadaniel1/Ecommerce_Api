@@ -18,38 +18,38 @@ Follow these steps to set up the development environment:
    pip install djangorestframework 
 
 3. **Package for Securing Data**:
-   ### 1. Secure Sensitive Data
+   ## Secure Sensitive Data
    To keep sensitive data out of the source code, install `python-decouple`:
    ```bash
    pip install python-decouple
 
 4. **Package for filtering**: 
-   ## 2. Filtering of Querysets
+   ##  Filtering of Querysets
    In your project folder, run the following command to install to allows users to filter querysets:
    ```bash
    pip install django-filter
 
 5. **Package for Mysql**: 
-   ## 2. Database Connector for MySQL
+   ##  Database Connector for MySQL
    In your project folder, run the following command used in Python database 
    connector to MySQL:
    ```bash
    pip install mysqlclient
 
 6. **Package for Image Processing**: 
-   ## 2. Processing Image Tasks such as Resizing and Conversion
+   ##  Processing Image Tasks such as Resizing and Conversion
    In your project folder, run the following command used to process image tasks:
    ```bash
    pip install pillow
 
 7. **Package for PEP 8 style guide**: 
-   ## 2. Python code against the PEP 8 style guide
+   ##  Python code against the PEP 8 style guide
    In your project folder, run the following command used to check Python code against the PEP 8 style guide :
    ```bash
    pip install pycodestyle
 
 8. **Package Identify Potential Bugs**: 
-   ## 2. Identify Potential Bugs in Python code
+   ##  Identify Potential Bugs in Python code
    In your project folder, run the following command used to identifying potential bugs in Python code:
    ```bash
    pip install pyflakes
