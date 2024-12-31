@@ -10,33 +10,70 @@ Follow these steps to set up the development environment:
 1. **Create a virtual environment**:
    In your project folder, run the following command to create a virtual environment:
    ```bash
-   python -m venv venv
+   python -m venv env
 
 2. **Install the Django Rest Framework**:
    In your project folder, run the following command to install DRF:
    ```bash
-   pip install django djangorestframework 
+   pip install djangorestframework 
 
-3. **Create a new Django project**:
+3. **Package for Securing Data**:
+   ### 1. Secure Sensitive Data
+   To keep sensitive data out of the source code, install `python-decouple`:
+   ```bash
+   pip install python-decouple
+
+4. **Packeage for filtering**: 
+   ### 2. Filtering of Querysets
+   In your project folder, run the following command to install to allows users to filter querysets:
+   ```bash
+   pip install django-filter
+
+5. **Packeage for Mysql**: 
+   ### 2. Database Connector for MySQL
+   In your project folder, run the following command used in Python database 
+   connector to MySQL:
+   ```bash
+   pip install mysqlclient
+
+6. **Packeage for Image Processing**: 
+   ### 2. Processing Image Tasks such as Resizing and Conversion
+   In your project folder, run the following command used to process image tasks:
+   ```bash
+   pip install pillow
+
+7. **Packeage for PEP 8 style guide**: 
+   ### 2. Python code against the PEP 8 style guide
+   In your project folder, run the following command used to check Python code against the PEP 8 style guide :
+   ```bash
+   pip install pycodestyle
+
+8. **Packeage Identify Potential Bugs**: 
+   ### 2. Identify Potential Bugs in Python code
+   In your project folder, run the following command used to identifying potential bugs in Python code:
+   ```bash
+   pip install pyflakes
+
+9. **Create a new Django project**:
    Create a django project
    ```bash
    django-admin startproject product_api
 
-4. **Create a new Django app**:
+10. **Create a new Django app**:
    Create a new Django app 
    ```bash
    python manage.py startapp product
    python manage.py startapp order
    python manage.py startapp user
 
-4. **Add the app to project**:
+11. **Add the app to project**:
    Open product_api/settings.py and add 'products' to the INSTALLED_APPS list.
    INSTALLED_APPS = [
     'rest_framework',  # Django REST Framework
     'products',  # Your app
 ]
 
-4. **Run the development server**:
+12. **Run the development server**:
    Run the development server to verify the setup
    ```bash
     python manage.py runserver
