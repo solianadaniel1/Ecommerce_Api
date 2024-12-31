@@ -40,13 +40,38 @@ Follow these steps to set up the development environment:
    ```bash
     python manage.py runserver
 
-## Features
+## Features and Endpoints
 - List all products.
 - Create a new products.
 - Retrieve details of a specific products.
 - Update all fields of a products.
 - Partially update a products (e.g., update the price).
 - Delete a products.
+
+## Product Endpoints
+- GET /products/: List all products.
+- POST /products/: Add a new product (admin-only).
+- GET /products/<id>/: Retrieve product details.
+- PUT /products/<id>/: Update product (admin-only).
+- DELETE /products/<id>/: Delete product (admin-only).
+## Wishlist Endpoints
+- GET /wishlist/: View all wishlist items for the logged-in user.
+- POST /wishlist/: Add a product to the wishlist.
+- DELETE /wishlist/<id>/: Remove a product from the wishlist.
+## Review Endpoints
+- GET /reviews/<product_id>/: Get all reviews for a product.
+- POST /reviews/: Add a review for a product.
+- PUT /reviews/<id>/: Update a review.
+- DELETE /reviews/<id>/: Delete a review.
+## Order Endpoints
+- GET /orders/: View all orders for the logged-in user.
+- POST /orders/: Place a new order.
+- GET /orders/<id>/: Retrieve details of a specific order.
+- PUT /orders/<id>/: Update order status (admin-only).
+## User Endpoints
+- POST /register/: Register a new user.
+- POST /login/: Login to get a JWT token.
+- GET /profile/: View the user profile.
 
 # Token Authentication Setup
 
