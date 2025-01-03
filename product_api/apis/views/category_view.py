@@ -43,6 +43,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Category.objects.all()
+    # queryset = Category.objects.all().order_by('name')  # Ensure ordering by name
     serializer_class = CategorySerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminOrReadOnly]

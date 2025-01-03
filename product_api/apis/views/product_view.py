@@ -5,7 +5,7 @@ from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from apis.permissions import IsAdminOrReadOnly
-from apis.serializers.product_serializers import ProductSerializer
+from apis.serializers.product_serializers import ProductSerializer, ProductImageSerializer
 from product.models import Category
 from product.models.product import Product
 from product.models.product_image import ProductImage
@@ -51,7 +51,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     authentication_classes = [JWTAuthentication]
-    # permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
     parser_classes = [
         MultiPartParser,
         FormParser,
@@ -106,3 +106,14 @@ class ProductViewSet(viewsets.ModelViewSet):
                 queryset = queryset.filter(categories=category)
 
         return queryset
+
+
+
+class ProductImageViewSet(viewsets.ModelViewSet):
+    queryset = ProductImage.objects.all()
+    serializer_class = ProductImageSerializer
+    parser_classes = [MultiPartParser, FormParser]
+
+    def perform_create(self, serializer):
+        product = self.get_object()  # Assuming product ID is passed in the URL
+        serializer.save(product=product)

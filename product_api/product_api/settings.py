@@ -161,7 +161,7 @@ REST_FRAMEWORK = {
 # }
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(
-        minutes=5
+        days=1
     ),  # Access tokens expire after 15 minutes
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,  # This ensures refresh tokens are rotated after use
