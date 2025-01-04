@@ -34,10 +34,11 @@ class OrderViewSetTest(APITestCase):
         """
         url = '/api/orders/'
         data = {
-            'product': 'Product4',
+            'product': self.product1.id,
             'order_status': 'Pending',
             'quantity': 1,
             'shipping_address': 'Address4',
+            'total_price': 4.55
         }
         response = self.client.post(
             url,
@@ -47,7 +48,7 @@ class OrderViewSetTest(APITestCase):
         # Test creation for user1
         response = self.client.post(url, data, HTTP_AUTHORIZATION=f'Bearer {self.token_user1}')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data['product'], 'Product4')
+        self.assertEqual(response.data['product'], self.product1.id)
         self.assertEqual(response.data['user'], self.user1.id)
 
         # Test creation for unauthenticated user
@@ -109,6 +110,10 @@ class OrderViewSetTest(APITestCase):
         Test deleting an order. Users can only delete their own orders.
         """
         url = f'/api/orders/{self.order1.id}/'
+
+        #Check if the order exists:
+        order_exists = Order.objects.filter(id=self.order1.id).exists()
+        print(f"Order exists: {order_exists}")
         
         # Test user1 deleting their own order
         response = self.client.delete(url, HTTP_AUTHORIZATION=f'Bearer {self.token_user1}')
