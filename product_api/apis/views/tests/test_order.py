@@ -67,7 +67,7 @@ class OrderViewSetTest(APITestCase):
         
         # Test user2 trying to access user1's order
         response = self.client.get(url, HTTP_AUTHORIZATION=f'Bearer {self.token_user2}')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_filter_orders(self):
         """
@@ -96,14 +96,14 @@ class OrderViewSetTest(APITestCase):
         }
 
         # Test user1 updating their own order
-        response = self.client.put(url, data, HTTP_AUTHORIZATION=f'Bearer {self.token_user1}')
+        response = self.client.patch(url, data, HTTP_AUTHORIZATION=f'Bearer {self.token_user1}')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['order_status'], 'Shipped')
         self.assertEqual(response.data['quantity'], 3)
 
         # Test user2 trying to update user1's order
-        response = self.client.put(url, data, HTTP_AUTHORIZATION=f'Bearer {self.token_user2}')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        response = self.client.patch(url, data, HTTP_AUTHORIZATION=f'Bearer {self.token_user2}')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_order_delete(self):
         """
@@ -121,7 +121,7 @@ class OrderViewSetTest(APITestCase):
         
         # Test user2 trying to delete user1's order
         response = self.client.delete(url, HTTP_AUTHORIZATION=f'Bearer {self.token_user2}')
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_order_ordering(self):
         """

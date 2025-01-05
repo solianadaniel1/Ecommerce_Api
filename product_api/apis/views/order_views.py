@@ -55,15 +55,15 @@ class OrderViewSet(viewsets.ModelViewSet):
     # Add filtering, searching, and ordering backends
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_fields = [
-        "user",
-        "product",
+        "user__email",
+        "product__name",
         "order_status",
         "quantity",
         "shipping_address",
     ]
     search_fields = [
-        "user",
-        "product",
+        "user__email",
+        "product__name",
         "order_status",
         "quantity",
         "shipping_address",

@@ -28,7 +28,7 @@ class CategoryViewSetTest(APITestCase):
 
     def test_create_category_admin(self):
         """Test creating a category by an admin user."""
-        url = reverse('category-list')  # Replace with the actual name of the category list URL
+        url = reverse('category-list')  
         data = {
             "name": "Books"
         }
@@ -41,7 +41,7 @@ class CategoryViewSetTest(APITestCase):
         
     def test_create_category_regular_user(self):
         """Test creating a category by a regular user should fail."""
-        url = reverse('category-list')  # Replace with the actual name of the category list URL
+        url = reverse('category-list')  
         data = {
             "name": "Toys"
         }
@@ -53,7 +53,7 @@ class CategoryViewSetTest(APITestCase):
         
     def test_retrieve_category(self):
         """Test retrieving a single category."""
-        url = reverse('category-detail', args=[self.category1.id])  # Replace with the actual name of the category detail URL
+        url = reverse('category-detail', args=[self.category1.id]) 
         response = self.client.get(url, HTTP_AUTHORIZATION=f"Bearer {self.admin_token}")
         
         # Check if the response is successful
@@ -62,7 +62,7 @@ class CategoryViewSetTest(APITestCase):
         
     def test_update_category(self):
         """Test updating an existing category by admin."""
-        url = reverse('category-detail', args=[self.category1.id])  # Replace with the actual name of the category detail URL
+        url = reverse('category-detail', args=[self.category1.id])  
         data = {
             "name": "Updated Electronics"
         }
@@ -78,7 +78,7 @@ class CategoryViewSetTest(APITestCase):
         
     def test_delete_category(self):
         """Test deleting a category by admin."""
-        url = reverse('category-detail', args=[self.category2.id])  # Replace with the actual name of the category detail URL
+        url = reverse('category-detail', args=[self.category2.id])  
         response = self.client.delete(url, HTTP_AUTHORIZATION=f"Bearer {self.admin_token}")
         
         # Check if the response is successful
@@ -89,7 +89,7 @@ class CategoryViewSetTest(APITestCase):
         
     def test_filter_categories(self):
         """Test filtering categories."""
-        url = reverse('category-list')  # Replace with the actual name of the category list URL
+        url = reverse('category-list')  
         response = self.client.get(url, {'name': 'Electronics'}, HTTP_AUTHORIZATION=f"Bearer {self.admin_token}")
         
         # Check if the response is successful
@@ -98,7 +98,7 @@ class CategoryViewSetTest(APITestCase):
       
     def test_search_categories(self):
         """Test searching categories."""
-        url = reverse('category-list')  # Replace with the actual name of the category list URL
+        url = reverse('category-list')  
         response = self.client.get(url, {'search': 'Clothing'}, HTTP_AUTHORIZATION=f"Bearer {self.admin_token}")
         
         # Check if the response is successful
@@ -106,7 +106,7 @@ class CategoryViewSetTest(APITestCase):
        
     def test_ordering_categories(self):
         """Test ordering categories by name."""
-        url = reverse('category-list')  # Replace with the actual name of the category list URL
+        url = reverse('category-list')  
         response = self.client.get(url, {'ordering': 'name'}, HTTP_AUTHORIZATION=f"Bearer {self.admin_token}")
         print(response.data)
         self.assertTrue(len(response.data) > 0, "No data found in response.")
