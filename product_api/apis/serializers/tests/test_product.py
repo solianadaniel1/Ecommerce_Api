@@ -1,6 +1,6 @@
 from rest_framework.test import APITestCase
 from product.models.product import Product
-from product.serializers import ProductSerializer
+from apis.serializers.product_serializers import ProductSerializer
 from rest_framework import status
 
 class ProductSerializerTest(APITestCase):
@@ -8,7 +8,8 @@ class ProductSerializerTest(APITestCase):
         self.product_data = {
             'name': 'Product Name',
             'price': 10.0,
-            'stock_quantity': 5
+            'stock_quantity': 5,
+            'description': 'this is a description'
         }
 
     def test_product_serializer_valid(self):
