@@ -48,9 +48,6 @@ class ProductViewSetTest(APITestCase):
         response = self.client.post(url, data, HTTP_AUTHORIZATION=f'Bearer {self.token_user1}')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        # # Test creation for unauthenticated user
-        # response = self.client.post(url, data)
-        # self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_product_access_permissions(self):
         """

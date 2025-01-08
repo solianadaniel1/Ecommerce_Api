@@ -38,26 +38,26 @@ Follow these steps to set up the development environment:
 
 
 
-9. **Create a new Django project**:
+6. **Create a new Django project**:
    Create a django project
    ```bash
    django-admin startproject product_api
 
-10. **Create a new Django app**:
+7. **Create a new Django app**:
    Create a new Django app 
    ```bash
    python manage.py startapp product
    python manage.py startapp order
    python manage.py startapp user
 
-11. **Add the app to project**:
+8. **Add the app to project**:
    Open product_api/settings.py and add 'products' to the INSTALLED_APPS list.
    INSTALLED_APPS = [
     'rest_framework',  # Django REST Framework
     'products',  # Your app
 ]
 
-12. **Run the development server**:
+9. **Run the development server**:
    Run the development server to verify the setup
    ```bash
     python manage.py runserver
