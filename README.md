@@ -1,6 +1,6 @@
 # E-commerce API
 
-This is the backend API for an E-commerce . It allows users to manage products, orders, categories, and user authentication. The project is built using Django and Django REST Framework.
+This is the backend API for an E-commerce . It allows users to manage products, orders, categories, review products, add products to wishlist and user authentication. The project is built using Django and Django REST Framework.
 
 
 ## Setup Instructions
