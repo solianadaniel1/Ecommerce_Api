@@ -1,9 +1,12 @@
 # Create your tests here.
-from django.test import TestCase
-from django.contrib.auth import get_user_model
-from product.models import Product
-from .models import Order
 from decimal import Decimal
+
+from django.contrib.auth import get_user_model
+from django.test import TestCase
+
+from product.models import Product
+
+from .models import Order
 
 
 class OrderModelTest(TestCase):
@@ -37,14 +40,23 @@ class OrderModelTest(TestCase):
         self.assertEqual(self.order.product, self.product)
         self.assertEqual(self.order.quantity, 2)
         self.assertEqual(self.order.total_price, Decimal("199.98"))
-        self.assertEqual(self.order.shipping_address, "123 Test St, Test City, Test Country")
+        self.assertEqual(
+            self.order.shipping_address, "123 Test St, Test City, Test Country"
+        )
         self.assertEqual(self.order.order_status, "Pending")
         self.assertIsNotNone(self.order.created_at)
         self.assertIsNotNone(self.order.updated_at)
 
     def test_order_status_choices(self):
         """Test that the order status choices are correct."""
-        valid_statuses = ["Pending", "Payment_Confirmed", "Shipped", "Delivered", "Canceled", "Refunded"]
+        valid_statuses = [
+            "Pending",
+            "Payment_Confirmed",
+            "Shipped",
+            "Delivered",
+            "Canceled",
+            "Refunded",
+        ]
         for status in valid_statuses:
             order = Order.objects.create(
                 user=self.user,
@@ -63,7 +75,9 @@ class OrderModelTest(TestCase):
 
     def test_order_total_price(self):
         """Test that the total price is calculated correctly based on quantity and product price."""
-        self.assertEqual(self.order.total_price, self.product.price * self.order.quantity)
+        self.assertEqual(
+            self.order.total_price, self.product.price * self.order.quantity
+        )
 
     def test_order_status_default(self):
         """Test that the default order status is 'Pending'."""

@@ -1,27 +1,27 @@
-from rest_framework.test import APITestCase
-from rest_framework import status
-from rest_framework_simplejwt.tokens import RefreshToken
-from users.models import CustomUser
-from django.urls import reverse
 from django.contrib.auth import get_user_model
+from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from users.models import CustomUser
 
 User = get_user_model()
+
 
 class UserViewSetTests(APITestCase):
     def setUp(self):
         # Create a superuser for testing admin functionality
         self.admin_user = User.objects.create_superuser(
-            email='admin@example.com',
-            password='password123',
+            email="admin@example.com",
+            password="password123",
             username="testuser",
-
         )
         # Create a regular user for testing
         self.regular_user = User.objects.create_user(
-            email='user@example.com',
-            password='password123',
+            email="user@example.com",
+            password="password123",
             username="test2user",
-
         )
 
         # Generate JWT token for authentication
@@ -39,32 +39,33 @@ class UserViewSetTests(APITestCase):
         """
         Test that the User viewset is accessible by admin only
         """
-        url = reverse('user-list')
-        response = self.client.get(url, HTTP_AUTHORIZATION=f'Bearer {self.admin_token}')
+        url = reverse("user-list")
+        response = self.client.get(url, HTTP_AUTHORIZATION=f"Bearer {self.admin_token}")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_user_viewset_regular_user_access(self):
         """
         Test that regular users cannot access the User viewset
         """
-        url = reverse('user-list')
-        response = self.client.get(url, HTTP_AUTHORIZATION=f'Bearer {self.regular_token}')
+        url = reverse("user-list")
+        response = self.client.get(
+            url, HTTP_AUTHORIZATION=f"Bearer {self.regular_token}"
+        )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_register_viewset_create_user(self):
         """
         Test that anyone can register a new user
         """
-        url = reverse('register-list')
+        url = reverse("register-list")
         data = {
-            'email': 'newuser@example.com',
-            'password': 'password123',
-            'username':'testresgister',
-
+            "email": "newuser@example.com",
+            "password": "password123",
+            "username": "testresgister",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data['email'], 'newuser@example.com')
+        self.assertEqual(response.data["email"], "newuser@example.com")
 
     def test_logout_view(self):
         """
@@ -72,25 +73,27 @@ class UserViewSetTests(APITestCase):
         """
         # Obtain the refresh token
         refresh_token = str(RefreshToken.for_user(self.regular_user))
-        
-        url = reverse('logout')
-        data = {'refresh_token': refresh_token}
+
+        url = reverse("logout")
+        data = {"refresh_token": refresh_token}
 
         # Make the POST request with the refresh token
-        response = self.client.post(url, data, HTTP_AUTHORIZATION=f'Bearer {self.regular_token}')
-        
+        response = self.client.post(
+            url, data, HTTP_AUTHORIZATION=f"Bearer {self.regular_token}"
+        )
+
         # Assert the response
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['message'], 'Logged out successfully')
-
+        self.assertEqual(response.data["message"], "Logged out successfully")
 
     def test_logout_view_no_token(self):
         """
         Test logout without a refresh token
         """
-        url = reverse('logout')
+        url = reverse("logout")
         data = {}  # Missing refresh token
-        response = self.client.post(url, data, HTTP_AUTHORIZATION=f'Bearer {self.regular_token}')
+        response = self.client.post(
+            url, data, HTTP_AUTHORIZATION=f"Bearer {self.regular_token}"
+        )
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn('Refresh token required', response.data['error'])
-
+        self.assertIn("Refresh token required", response.data["error"])

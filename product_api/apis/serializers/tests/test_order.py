@@ -1,9 +1,11 @@
-from django.test import TestCase
-from order.models import Order
-from apis.serializers.order_serializer import OrderSerializer
-from product.models.product import Product
 from django.contrib.auth import get_user_model
+from django.test import TestCase
 from rest_framework.test import APIRequestFactory
+
+from apis.serializers.order_serializer import OrderSerializer
+from order.models import Order
+from product.models.product import Product
+
 
 class TestOrderSerializer(TestCase):
     def setUp(self):
@@ -34,7 +36,9 @@ class TestOrderSerializer(TestCase):
         Test that the stock quantity is reduced after saving the order.
         """
         # Pass the request in context
-        serializer = OrderSerializer(data=self.order_data, context={"request": self.request})
+        serializer = OrderSerializer(
+            data=self.order_data, context={"request": self.request}
+        )
 
         # Validate serializer
         self.assertTrue(serializer.is_valid(), f"Errors: {serializer.errors}")
@@ -49,21 +53,27 @@ class TestOrderSerializer(TestCase):
         Test that the total price is correctly calculated.
         """
         # Pass the request in context
-        serializer = OrderSerializer(data=self.order_data, context={"request": self.request})
+        serializer = OrderSerializer(
+            data=self.order_data, context={"request": self.request}
+        )
 
         # Validate serializer
         self.assertTrue(serializer.is_valid(), f"Errors: {serializer.errors}")
         order = serializer.save()
 
         # Verify total price calculation
-        self.assertEqual(order.total_price, self.product.price * self.order_data["quantity"])
+        self.assertEqual(
+            order.total_price, self.product.price * self.order_data["quantity"]
+        )
 
     def test_order_serializer_with_valid_data(self):
         """
         Test the OrderSerializer with valid data to ensure an order is created.
         """
         # Pass the request in context
-        serializer = OrderSerializer(data=self.order_data, context={"request": self.request})
+        serializer = OrderSerializer(
+            data=self.order_data, context={"request": self.request}
+        )
 
         # Validate serializer
         self.assertTrue(serializer.is_valid(), f"Errors: {serializer.errors}")
@@ -83,13 +93,14 @@ class TestOrderSerializer(TestCase):
         self.order_data["quantity"] = 15
 
         # Pass the request in context
-        serializer = OrderSerializer(data=self.order_data, context={"request": self.request})
+        serializer = OrderSerializer(
+            data=self.order_data, context={"request": self.request}
+        )
 
         # Validate serializer
         self.assertFalse(serializer.is_valid())
         self.assertIn("non_field_errors", serializer.errors)
         self.assertEqual(
             str(serializer.errors["non_field_errors"][0]),
-            f"Cannot order 15. Only {self.product.stock_quantity} left in stock."
+            f"Cannot order 15. Only {self.product.stock_quantity} left in stock.",
         )
-

@@ -1,6 +1,7 @@
 from django.test import TestCase
+
+from apis.serializers.user_serializer import RegisterSerializer, UserSerializer
 from users.models import CustomUser
-from apis.serializers.user_serializer import UserSerializer, RegisterSerializer
 
 
 class TestUserSerializers(TestCase):
@@ -55,4 +56,3 @@ class TestUserSerializers(TestCase):
         self.assertFalse(serializer.is_valid())
         self.assertIn("email", serializer.errors)
         self.assertIn("password", serializer.errors)
-

@@ -1,6 +1,7 @@
 from rest_framework.test import APITestCase
-from product.models.category import Category
+
 from apis.serializers.category_serializer import CategorySerializer
+from product.models.category import Category
 
 
 class TestCategorySerializer(APITestCase):

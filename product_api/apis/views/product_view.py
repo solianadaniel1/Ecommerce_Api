@@ -5,7 +5,8 @@ from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from apis.permissions import IsAdminOrReadOnly
-from apis.serializers.product_serializers import ProductSerializer, ProductImageSerializer
+from apis.serializers.product_serializers import (ProductImageSerializer,
+                                                  ProductSerializer)
 from product.models import Category
 from product.models.product import Product
 from product.models.product_image import ProductImage
@@ -106,7 +107,6 @@ class ProductViewSet(viewsets.ModelViewSet):
                 queryset = queryset.filter(categories=category)
 
         return queryset
-
 
 
 class ProductImageViewSet(viewsets.ModelViewSet):

@@ -1,8 +1,9 @@
-from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.test import TestCase
+
+from product.models.category import Category
 from product.models.product import Product
 from product.models.product_wishlist import Wishlist
-from product.models.category import Category
 
 User = get_user_model()
 
@@ -57,5 +58,6 @@ class WishlistModelTest(TestCase):
         """Test the string representation of a wishlist entry."""
         wishlist_entry = Wishlist.objects.create(user=self.user, product=self.product1)
         self.assertEqual(
-            str(wishlist_entry), f"Wishlist: {self.user.username} - {self.product1.name}"
+            str(wishlist_entry),
+            f"Wishlist: {self.user.username} - {self.product1.name}",
         )

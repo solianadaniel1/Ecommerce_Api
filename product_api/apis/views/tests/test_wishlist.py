@@ -1,8 +1,10 @@
-from rest_framework.test import APITestCase, APIClient
-from rest_framework import status
 from django.contrib.auth import get_user_model
+from rest_framework import status
+from rest_framework.test import APIClient, APITestCase
+
 from product.models.product import Product
 from product.models.product_wishlist import Wishlist
+
 
 class WishlistViewSetTestCase(APITestCase):
     """
@@ -32,7 +34,9 @@ class WishlistViewSetTestCase(APITestCase):
         response = self.client.post(self.wishlist_url, {"product": self.product.id})
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertTrue(Wishlist.objects.filter(user=self.user, product=self.product).exists())
+        self.assertTrue(
+            Wishlist.objects.filter(user=self.user, product=self.product).exists()
+        )
 
     def test_add_duplicate_product_to_wishlist(self):
         """
@@ -45,7 +49,7 @@ class WishlistViewSetTestCase(APITestCase):
         response = self.client.post(self.wishlist_url, {"product": self.product.id})
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn("This product is already in your wishlist.",response.data)
+        self.assertIn("This product is already in your wishlist.", response.data)
 
     def test_add_nonexistent_product_to_wishlist(self):
         """
@@ -54,7 +58,7 @@ class WishlistViewSetTestCase(APITestCase):
         response = self.client.post(self.wishlist_url, {"product": 999})
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn("Product not found.",response.data)
+        self.assertIn("Product not found.", response.data)
 
     def test_view_wishlist(self):
         """
@@ -64,7 +68,7 @@ class WishlistViewSetTestCase(APITestCase):
         Wishlist.objects.create(user=self.user, product=self.product)
 
         response = self.client.get(self.wishlist_url)
-        print(response.data)  
+        print(response.data)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -78,7 +82,9 @@ class WishlistViewSetTestCase(APITestCase):
         response = self.client.delete(f"{self.wishlist_url}{wishlist_item.id}/")
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertFalse(Wishlist.objects.filter(user=self.user, product=self.product).exists())
+        self.assertFalse(
+            Wishlist.objects.filter(user=self.user, product=self.product).exists()
+        )
 
     def test_remove_other_user_wishlist_item(self):
         """

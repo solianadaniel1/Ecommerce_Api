@@ -29,19 +29,19 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("Username is required!")
 
         email = self.normalize_email(email)
-        
+
         # Check if the email already exists
         if CustomUser.objects.filter(email=email).exists():
             raise ValidationError("Email must be unique.")
-        
+
         # Check if the username already exists
         if CustomUser.objects.filter(username=username).exists():
             raise ValidationError("Username must be unique.")
-        
+
         # Check if the password already exists
         if CustomUser.objects.filter(password=password).exists():
             raise ValidationError("Password must be unique.")
-        
+
         user = self.model(email=email, username=username)
         user.set_password(password)
         user.save(using=self._db)

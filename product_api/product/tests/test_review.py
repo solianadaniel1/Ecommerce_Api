@@ -1,8 +1,10 @@
-from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
+from django.test import TestCase
+
 from product.models import Product
 from product.models.review import Review
-from django.core.exceptions import ValidationError
+
 
 class ReviewModelTest(TestCase):
     def setUp(self):
@@ -13,16 +15,16 @@ class ReviewModelTest(TestCase):
 
         # Create a product
         self.product = Product.objects.create(
-            name="Smartphone", description="A high-quality smartphone.", price=999.99, stock_quantity=10
+            name="Smartphone",
+            description="A high-quality smartphone.",
+            price=999.99,
+            stock_quantity=10,
         )
 
     def test_create_review(self):
         """Test that a review can be created and is associated with the correct user and product."""
         review = Review.objects.create(
-            user=self.user,
-            product=self.product,
-            rating=5,
-            comment="Excellent product!"
+            user=self.user, product=self.product, rating=5, comment="Excellent product!"
         )
         self.assertEqual(Review.objects.count(), 1)
         self.assertEqual(review.user, self.user)
@@ -30,14 +32,10 @@ class ReviewModelTest(TestCase):
         self.assertEqual(review.rating, 5)
         self.assertEqual(review.comment, "Excellent product!")
 
-
     def test_str_representation(self):
         """Test the string representation of the review."""
         review = Review.objects.create(
-            user=self.user,
-            product=self.product,
-            rating=4,
-            comment="Good product."
+            user=self.user, product=self.product, rating=4, comment="Good product."
         )
         self.assertEqual(str(review), "Review for Smartphone by testuser")
 
@@ -47,7 +45,7 @@ class ReviewModelTest(TestCase):
             user=self.user,
             product=self.product,
             rating=6,  # Invalid rating (outside 1-5 range)
-            comment="Invalid rating."
+            comment="Invalid rating.",
         )
         with self.assertRaises(ValidationError):
             invalid_review.clean()  # This should raise a ValidationError
@@ -56,10 +54,9 @@ class ReviewModelTest(TestCase):
             user=self.user,
             product=self.product,
             rating=3,  # Valid rating (within 1-5 range)
-            comment="Valid rating."
+            comment="Valid rating.",
         )
         try:
             valid_review.clean()  # This should not raise any errors
         except ValidationError:
             self.fail("Valid review raised a ValidationError")
-

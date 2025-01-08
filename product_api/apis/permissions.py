@@ -1,5 +1,6 @@
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import SAFE_METHODS, BasePermission
-from rest_framework.exceptions import PermissionDenied 
+
 
 class IsAdminOrReadOnly(BasePermission):
     """
@@ -40,7 +41,7 @@ class IsOrderOwner(BasePermission):
     """
 
     def has_object_permission(self, request, view, obj):
-    # If the user doesn't own the object, raise PermissionDenied
+        # If the user doesn't own the object, raise PermissionDenied
         if obj.user != request.user:
             raise PermissionDenied("You do not have permission to access this order.")
         return True

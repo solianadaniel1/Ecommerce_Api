@@ -1,7 +1,8 @@
 from django.test import TestCase
-from product.models.product import Product
-from product.models.category import Category
 from django.utils.timezone import now
+
+from product.models.category import Category
+from product.models.product import Product
 
 
 class ProductModelTest(TestCase):
@@ -22,7 +23,9 @@ class ProductModelTest(TestCase):
     def test_product_creation(self):
         """Test that the product is created with the correct attributes."""
         self.assertEqual(self.product.name, "Test Product")
-        self.assertEqual(self.product.description, "This is a test product description.")
+        self.assertEqual(
+            self.product.description, "This is a test product description."
+        )
         self.assertEqual(self.product.price, 99.99)
         self.assertEqual(self.product.stock_quantity, 10)
         self.assertIsNotNone(self.product.created_date)
