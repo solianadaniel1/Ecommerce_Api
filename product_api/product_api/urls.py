@@ -22,7 +22,7 @@ from django.urls import include, path
 
 def index(request):
     return HttpResponse(
-        "Welcome to the API! Go to /api/product/ to view the product list."
+        "Welcome to the API! Go to /api/ to view the product list."
     )
 
 
