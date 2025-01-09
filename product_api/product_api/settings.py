@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-qjr0ozz87l&)mc9==&%&oto^(@*wr@+&g04o4gw&59en1q6xac
 DEBUG = True
 
 # explicitly specify which hosts are allowed to serve your application
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["ecommerceapi-production-f3df.up.railway.app"]
 
 
 # Application definition
