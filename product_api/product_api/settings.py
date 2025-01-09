@@ -90,17 +90,33 @@ WSGI_APPLICATION = "product_api.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": config("DB_NAME", default="default_db_name"),
-        "USER": config("DB_USER", default="default_user"),
-        "PASSWORD": config("DB_PASSWORD", default="default_password"),
-        "HOST": config("DB_HOST", default="localhost"),
-        "PORT": config("DB_PORT", default="3306"),
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": config("DB_NAME", default="default_db_name"),
+#         "USER": config("DB_USER", default="default_user"),
+#         "PASSWORD": config("DB_PASSWORD", default="default_password"),
+#         "HOST": config("DB_HOST", default="localhost"),
+#         "PORT": config("DB_PORT", default="3306"),
+#     }
+# }
+POSTGRES_LOCALLY = True
 
+if config("ENVIROMENT", default="default_env") == 'production' or POSTGRES_LOCALLY:
+    DATABASES = {
+        'default': dj_database_url.parse(config('DATABASE_URL'))
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('DB_NAME', default='your_default_db_name'),
+            'USER': config('DB_USER', default='your_default_db_user'),
+            'PASSWORD': config('DB_PASSWORD', default='your_default_db_password'),
+            'HOST': config('DB_HOST', default='postgres.railway.internal'),
+            'PORT': config('DB_PORT', default='5432'),
+        }
+    }
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
